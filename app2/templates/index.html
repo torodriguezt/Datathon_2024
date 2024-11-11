@@ -180,18 +180,27 @@
             Se utilizaron datos de la cantidad de turistas en Medellín desde el año 2018 hasta 2024
         </p>
 
-        <h2>Interactive Plot</h2>
+        <h2>Ajuste y Predicciones del Modelo</h2>
         <p class="description">El siguiente gráfico interactivo muestra los pronósticos del modelo Prophet para la cantidad de turistas en Medellín en los próximos 6 meses. 
             Podemos ver como el modelo dentro del rango de los datos muestra un buen ajuste teniendo el mayor problema en 2020 a causa de la pandemia, sin embargo la tendencia muesta como el turismo se fue recuperando 
             y justo el modelo empieza a mejorar sus predicciones. Se observa como fuera del rango de los datos esta tarea se vuelve más compleja, sin embargo, para tener información inmediata de algunos meses en el futuro y poder tomar decisiones se presta
             como una valiosa herramienta.</p>
         <iframe src="{{ url_for('static_files', filename='interactive_forecast_plot.html') }}"></iframe>
 
-        <h2 class="mt-4">Static Components Plot</h2>
+        <h2 class="mt-4">Estacionalidad</h2>
         <div class="img-container">
-            <img src="{{ url_for('static_files', filename='forecast_components.png') }}" alt="Forecast Components">
+        <img src="{{ url_for('static_files', filename='estacion.png') }}" alt="Forecast Components">
         </div>
-
+        <p>La estacionalidad anual que se ve reflejada en el modelo implementado, muestra cómo varía el número de turistas en un patrón anual. Se observan picos más elevados que representan las temporadas donde se da mayor afluencia de migrantes a la ciudad de Medellín, 
+            que, en este caso, podrían coincidir con épocas de festivales populares o vacaciones. Por el contrario, las caídas indican temporadas de baja afluencia de migrantes a la ciudad, las cuales se pueden ver más marcadas en temporadas posteriores a vacaciones o fiestas tradicionales.
+            Hacer un análisis más detallado de estos patrones identificados, puede ser útil para ayudar a 
+            planificar un turismo sostenible, pues se podría proponer que, 
+            en las temporadas en las que se presenta una afluencia más alta de turistas, 
+            se promuevan ciertas prácticas de turismo responsable y sostenible para mitigar 
+            el impacto ambiental y social que trae esto para la ciudad de Medellín. 
+            Por otro lado, en las épocas de baja afluencia, se podría incentivar el turismo en estos períodos 
+            de menor vista para de esta manera distribuir de manera más uniforme la carga turística durante el año,
+             ofreciendo descuentos u organizando eventos específicos para atraer a los turistas.</p>
         <div class="mt-5 text-center">
             <h2>TeamStatUN</h2>
             <p>María Isabel Ríos, Mariana Hernández, Alejandro Pérez, Tomás Rodríguez</p>

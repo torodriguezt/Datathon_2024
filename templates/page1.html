@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página 1</title>
+    <style>
+:root {
+    --primary-color: #4facfe;
+    --primary-dark: #0056b3;
+    --secondary-color: #2c3e50;
+    --success-color: #43e97b;
+    --background-start: #f5f7fa;
+    --background-end: #c3cfe2;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --input-border: #e1e8ef;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+h1 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px var(--shadow-color);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+    transform: translateY(-2px);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #00f2fe 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:active {
+    transform: translateY(1px);
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+.response {
+    margin-top: 30px;
+    background: linear-gradient(135deg, rgba(67, 233, 123, 0.1) 0%, rgba(56, 249, 215, 0.1) 100%);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 5px solid var(--success-color);
+    transition: all 0.3s ease;
+}
+
+.response:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(67, 233, 123, 0.2);
+}
+
+.response h2 {
+    color: var(--success-color);
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.response p {
+    color: var(--secondary-color);
+    line-height: 1.8;
+    margin: 10px 0 0;
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 30px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    input[type="text"] {
+        padding: 12px;
+    }
+
+    .submit-button {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-start: #2c3e50;
+        --background-end: #3498db;
+        --secondary-color: #ffffff;
+        --input-border: #4a5c6b;
+    }
+
+    .container {
+        background: rgba(44, 62, 80, 0.95);
+    }
+
+    input[type="text"] {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+    }
+
+    .response {
+        background: rgba(67, 233, 123, 0.05);
+    }
+
+    label, .response p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ruta</h1>
+        <form action="/" method="post">
+            <input type="hidden" name="source_page" value="page1">
+            <div class="form-group">
+                <label for="inicio">Inicio:</label>
+                <input type="text" name="inicio" id="inicio" required>
+            </div>
+            <div class="form-group">
+                <label for="llegada">Llegada:</label>
+                <input type="text" name="llegada" id="llegada" required>
+            </div>
+            <input type="submit" value="Enviar" class="submit-button">
+        </form>
+
+        {% if response %}
+            <div class="response">
+                <h2>Respuesta:</h2>
+                <p>{{ response }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

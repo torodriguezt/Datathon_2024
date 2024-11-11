@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página 2</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            font-weight: 500;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+    
+        label {
+            display: block;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+    
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 2px solid #e1e8ef;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+    
+        input[type="text"]:focus {
+            border-color: #4facfe;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+            transform: translateY(-2px);
+        }
+    
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+    
+        .response {
+            margin-top: 30px;
+            background: linear-gradient(135deg, rgba(67, 233, 123, 0.1) 0%, rgba(56, 249, 215, 0.1) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #43e97b;
+            transition: all 0.3s ease;
+        }
+    
+        .response:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.2);
+        }
+    
+        .response h2 {
+            color: #43e97b;
+            margin-top: 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+    
+        .response p {
+            color: #2c3e50;
+            line-height: 1.8;
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+        }
+    
+        /* Contenedor del mapa */
+        #map {
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 30px;
+                margin: 10px;
+            }
+    
+            h1 {
+                font-size: 1.8rem;
+            }
+    
+            input[type="text"] {
+                padding: 12px;
+            }
+    
+            .submit-button {
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+    
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-start: #2c3e50;
+                --background-end: #3498db;
+                --secondary-color: #ffffff;
+                --input-border: #4a5c6b;
+            }
+    
+            .container {
+                background: rgba(44, 62, 80, 0.95);
+            }
+    
+            input[type="text"] {
+                background: rgba(255, 255, 255, 0.05);
+                color: white;
+            }
+    
+            .response {
+                background: rgba(67, 233, 123, 0.05);
+            }
+    
+            label, .response p {
+                color: rgba(255, 255, 255, 0.9);
+            }
+        }
+    </style>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Intereses</h1>
+        <form action="/" method="post">
+            <input type="hidden" name="source_page" value="page2">
+            <div class="form-group">
+                <label for="inicio">Interés:</label>
+                <input type="text" name="inicio" id="inicio" required>
+            </div>
+            <div class="form-group">
+                <label for="llegada">Lugar:</label>
+                <input type="text" name="llegada" id="llegada" required>
+            </div>
+            <input type="submit" value="Enviar" class="submit-button">
+        </form>
+
+        {% if response %}
+            <div class="response">
+                <h2>Respuesta:</h2>
+                <p>{{ response }}</p>
+                <!-- Contenedor del mapa -->
+                <div id="map"></div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if response %}
+    <script>
+        // JavaScript para procesar la respuesta y mostrar el mapa
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar el mapa
+            var map = L.map('map').setView([6.2442, -75.5812], 13); // Centrado en Medellín
+
+            // Añadir teselas de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            // Función para extraer nombres de lugares del texto de la respuesta
+            function extractPlaces(responseText) {
+                var places = [];
+
+                // Eliminar etiquetas HTML si las hay
+                var plainText = responseText.replace(/<[^>]*>?/gm, '');
+
+                // Dividir el texto en líneas
+                var lines = plainText.split('\n');
+                lines.forEach(function(line) {
+                    // Eliminar espacios en blanco
+                    line = line.trim();
+                    // Coincidir líneas que comienzan con número o viñeta
+                    var match = line.match(/^[\d\.\-\*]+\s+(.*)/);
+                    if (match) {
+                        places.push(match[1]);
+                    } else if (line !== '') {
+                        // Agregar la línea si no está vacía
+                        places.push(line);
+                    }
+                });
+
+                // Eliminar duplicados
+                places = [...new Set(places)];
+
+                return places;
+            }
+
+            // Obtener el texto de la respuesta de la variable de plantilla
+            var responseText = `{{ response | escape | replace("\n", "\\n") }}`;
+
+            // Extraer nombres de lugares
+            var places = extractPlaces(responseText);
+
+            // Función para geocodificar un nombre de lugar usando la API de Nominatim
+            function geocodePlace(placeName) {
+                var url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(placeName + ', Medellín, Colombia');
+                return fetch(url)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        if (data && data.length > 0) {
+                            return {
+                                name: placeName,
+                                lat: data[0].lat,
+                                lon: data[0].lon
+                            };
+                        } else {
+                            console.warn('No hay resultados para', placeName);
+                            return null;
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error al geocodificar', placeName, error);
+                        return null;
+                    });
+            }
+
+            // Geocodificar todos los lugares y agregar marcadores al mapa
+            Promise.all(places.map(geocodePlace)).then(function(results) {
+                var validResults = results.filter(function(r) { return r !== null; });
+                validResults.forEach(function(result) {
+                    if (result) {
+                        var marker = L.marker([result.lat, result.lon]).addTo(map);
+                        marker.bindPopup(result.name);
+                    }
+                });
+
+                if (validResults.length > 0) {
+                    // Ajustar vista del mapa para mostrar todos los marcadores
+                    var group = new L.featureGroup(validResults.map(function(result) {
+                        return L.marker([result.lat, result.lon]);
+                    }));
+                    map.fitBounds(group.getBounds().pad(0.1));
+                } else {
+                    console.warn('No hay ubicaciones válidas para mostrar en el mapa.');
+                }
+            });
+        });
+    </script>
+    {% endif %}
+</body>
+</html>

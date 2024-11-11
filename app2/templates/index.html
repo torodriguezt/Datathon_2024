@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicciones Turismo Medellín</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #304ffe;
+            --accent-color: #536dfe;
+            --background-color: #f5f6fa;
+            --text-color: #2d3436;
+            --card-background: #ffffff;
+            --spacing: 2.5rem;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background-color) 0%, #e8eaf6 100%);
+            color: var(--text-color);
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: var(--spacing);
+            background-color: var(--card-background);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: var(--transition);
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: calc(var(--spacing) * 1.5);
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: var(--spacing);
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: var(--spacing);
+            font-size: 1.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .img-container {
+            text-align: center;
+            margin-top: var(--spacing);
+            padding: 1.5rem;
+            background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-container:hover {
+            transform: scale(1.02);
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: calc(var(--border-radius) - 4px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--card-background);
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        iframe:hover {
+            transform: scale(1.01);
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                margin: 0.5rem;
+                padding: var(--spacing);
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            iframe {
+                height: 400px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #5c6bc0;
+                --secondary-color: #7986cb;
+                --accent-color: #9fa8da;
+                --background-color: #1a1a2e;
+                --text-color: #e0e0e0;
+                --card-background: #282a36;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Predicciones del turismo en Medellín utilizando el modelo Prophet</h1>
+        <p class="description">Esta aplicación proporciona predicciones interactivas y visualizaciones los resultados obtenidos por el modelo Prophet para la cantidad de turistas en Medellín en un futuro.
+            Se utilizaron datos de la cantidad de turistas en Medellín desde el año 2018 hasta 2024
+        </p>
+
+        <h2>Interactive Plot</h2>
+        <p class="description">El siguiente gráfico interactivo muestra los pronósticos del modelo Prophet para la cantidad de turistas en Medellín en los próximos 6 meses. 
+            Podemos ver como el modelo dentro del rango de los datos muestra un buen ajuste teniendo el mayor problema en 2020 a causa de la pandemia, sin embargo la tendencia muesta como el turismo se fue recuperando 
+            y justo el modelo empieza a mejorar sus predicciones. Se observa como fuera del rango de los datos esta tarea se vuelve más compleja, sin embargo, para tener información inmediata de algunos meses en el futuro y poder tomar decisiones se presta
+            como una valiosa herramienta.</p>
+        <iframe src="{{ url_for('static_files', filename='interactive_forecast_plot.html') }}"></iframe>
+
+        <h2 class="mt-4">Static Components Plot</h2>
+        <div class="img-container">
+            <img src="{{ url_for('static_files', filename='forecast_components.png') }}" alt="Forecast Components">
+        </div>
+
+        <div class="mt-5 text-center">
+            <h2>TeamStatUN</h2>
+            <p>María Isabel Ríos, Mariana Hernández, Alejandro Pérez, Tomás Rodríguez</p>
+        </div>
+    </div>
+</body>
+</html>
